@@ -1,5 +1,6 @@
 using System;
 using _Game.Scripts.Abstacts.Movement;
+using _Game.Scripts.Concretes.Managers;
 using _Game.Scripts.Concretes.Movement;
 using UnityEngine;
 using UnityEngine.AI;
@@ -26,6 +27,7 @@ namespace _Game.Scripts.Concretes.Controllers
         {
             if (Input.GetMouseButtonDown(0))
             {
+                GameManager.Instance.isStart = true;
                 _moveWithNavmesh.Move();
             }
         }

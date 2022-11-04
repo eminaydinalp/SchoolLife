@@ -25,11 +25,17 @@ namespace _Game.Scripts.Concretes.Controllers
 
         private void Update()
         {
+            if(GameManager.Instance.isFinish) return;
+
             if (Input.GetMouseButtonDown(0))
             {
-                GameManager.Instance.isStart = true;
-                _moveWithNavmesh.Move();
+                Move();
             }
+        }
+
+        public void Move()
+        {
+            _moveWithNavmesh.Move();
         }
     }
 }

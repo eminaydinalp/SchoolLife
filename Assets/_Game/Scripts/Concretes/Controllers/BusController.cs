@@ -1,15 +1,18 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using _Game.Scripts.Concretes.Managers;
+using _Game.Scripts.Concretes.Uis;
 using UnityEngine;
 
 namespace _Game.Scripts.Concretes.Controllers
 {
     public class BusController : MonoBehaviour
     {
+        [SerializeField] private BusFillSlider busFillSlider;
         public int capacity;
         public int currentPassengerCount;
 
-        public int startCount;
         private void OnTriggerEnter(Collider other)
         {
             
@@ -18,31 +21,45 @@ namespace _Game.Scripts.Concretes.Controllers
             if (playerController != null)
             {
                 currentPassengerCount++;
+                if (currentPassengerCount > capacity)
+                {
+                    StartCoroutine(GameOver());
+                }
+                busFillSlider.IncreaseSliderValue();
             }
         }
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && startCount > 0)
+            if(GameManager.Instance.isFinish) return;
+            if (Input.GetMouseButtonDown(0) && currentPassengerCount > 0)
             {
                 Validation();
-            }
-            if (Input.GetMouseButtonUp(0))
-            {
-                startCount++;
             }
         }
 
         private void Validation()
         {
+            GameManager.Instance.isFinish = true;
+            
             if (capacity * 0.7f > currentPassengerCount || currentPassengerCount > capacity)
             {
-                Debug.Log("Fail");
+                GameManager.Instance.OnFail?.Invoke();
             }
             else
             {
-                Debug.Log("Win");
+                GameManager.Instance.OnWin?.Invoke();
+
             }
+        }
+
+        IEnumerator GameOver()
+        {
+            yield return new WaitForSeconds(1f);
+            if (GameManager.Instance.isFinish) yield break;
+            GameManager.Instance.OnFail?.Invoke();
+            
+            GameManager.Instance.isFinish = true;
         }
     }
 }

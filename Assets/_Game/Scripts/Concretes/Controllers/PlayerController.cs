@@ -29,6 +29,7 @@ namespace _Game.Scripts.Concretes.Controllers
 
             if (Input.GetMouseButtonDown(0))
             {
+                GameManager.Instance.OnStartGame?.Invoke();
                 Move();
             }
         }

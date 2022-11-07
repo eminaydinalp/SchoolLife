@@ -10,6 +10,7 @@ namespace _Game.Scripts.Concretes.Managers
     {
         public Action OnWin;
         public Action OnFail;
+        public Action OnStartGame;
         public bool isFinish;
         
         public void LoadScene(string sceneManager)

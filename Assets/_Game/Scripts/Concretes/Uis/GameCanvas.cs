@@ -8,6 +8,7 @@ namespace _Game.Scripts.Concretes.Uis
     {
         [SerializeField] private GameObject failPanel;
         [SerializeField] private GameObject winPanel;
+        [SerializeField] private GameObject startPanel;
         [SerializeField] private GameObject fillSlider;
         [SerializeField] private OccupancyRate occupancyText;
 
@@ -17,8 +18,9 @@ namespace _Game.Scripts.Concretes.Uis
             GameManager.Instance.OnWin += OpenWinPanel;
             GameManager.Instance.OnFail += OpenOccupancyRateText;
             GameManager.Instance.OnWin += OpenOccupancyRateText;
-            GameManager.Instance.OnFail += ClosoFillSlider;
-            GameManager.Instance.OnWin += ClosoFillSlider;
+            GameManager.Instance.OnFail += CloseFillSlider;
+            GameManager.Instance.OnWin += CloseFillSlider;
+            GameManager.Instance.OnStartGame += CloseStartPanel;
         }
 
         private void OnDisable()
@@ -27,8 +29,9 @@ namespace _Game.Scripts.Concretes.Uis
             GameManager.Instance.OnWin -= OpenWinPanel;
             GameManager.Instance.OnFail -= OpenOccupancyRateText;
             GameManager.Instance.OnWin -= OpenOccupancyRateText;
-            GameManager.Instance.OnFail -= ClosoFillSlider;
-            GameManager.Instance.OnWin -= ClosoFillSlider;
+            GameManager.Instance.OnFail -= CloseFillSlider;
+            GameManager.Instance.OnWin -= CloseFillSlider;
+            GameManager.Instance.OnStartGame -= CloseStartPanel;
         }
 
 
@@ -47,9 +50,14 @@ namespace _Game.Scripts.Concretes.Uis
             occupancyText.DisplayOccupancyRate();
         }
 
-        private void ClosoFillSlider()
+        private void CloseFillSlider()
         {
             fillSlider.SetActive(false);
+        }
+
+        private void CloseStartPanel()
+        {
+            startPanel.SetActive(false);
         }
     }
 }

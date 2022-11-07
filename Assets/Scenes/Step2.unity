@@ -8278,9 +8278,13 @@ PrefabInstance:
       propertyPath: busController
       value: 
       objectReference: {fileID: 317628402}
-    - target: {fileID: 1524624171, guid: f39988ba2f580fd40902c40652f3f5c9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 508
+    - target: {fileID: 511793939, guid: f39988ba2f580fd40902c40652f3f5c9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1227741534, guid: f39988ba2f580fd40902c40652f3f5c9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1524624172, guid: f39988ba2f580fd40902c40652f3f5c9, type: 3}
       propertyPath: busController

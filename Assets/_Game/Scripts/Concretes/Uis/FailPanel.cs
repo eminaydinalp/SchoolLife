@@ -1,7 +1,9 @@
 ﻿using System;
 using _Game.Scripts.Concrates.Utilities;
 using _Game.Scripts.Concretes.Managers;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace _Game.Scripts.Concretes.Uis
 {
@@ -9,7 +11,7 @@ namespace _Game.Scripts.Concretes.Uis
     {
         public void TryAgainButton()
         {
-            GameManager.Instance.LoadScene(Consts.Step1);
+            GameManager.Instance.LoadScene(SceneManager.GetActiveScene().name);
         }
         
         public void SkipButton()
